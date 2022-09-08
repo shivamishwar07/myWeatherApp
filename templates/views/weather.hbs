@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <title>Weather app</title>
+    <link rel="stylesheet" href="css/style.css ">
+    <link rel="shortcut icon" href="images/weather.png" type="">
+</head>
+<body>
+   {{>navbar}}
+
+
+   <!--Main header-->
+   <div class="containter-fluid main_header">
+    <div class="row">
+    <div class="col-md-10 col-12 mx-auto">
+        
+      <div class="main_content">
+       <form class="temp_form">
+        <input type="text" id="cityName" placeholder="Enter the city name" autocomplete="off">
+        <input type="submit" id="submitBtn" value="Search">
+       </form>
+      </div>
+
+
+       <div class="tempInformation">
+        <div class="top_layer">
+        <p id="day">Tuesday</p>
+        <p id="today_date">03 SEP</p>
+        </div>
+
+        <div class="main_layer ">
+            <div id="city_name">Your Output</div>
+            <div class="middle_layer data_hide"style="color:white;">
+             <p id="temp"><span id="temp_real_val">0</span>o<sup>C</sup></p>   
+             <p id="temp_status">
+                <i class="fa fa-cloud"></i></p>
+            </div>
+        </div>
+       </div>
+        </div>
+    </div> 
+    </div>
+    </div>
+   
+    {{>footer}}
+    <script src="js/main.js"></script>
+    <script>   
+    const getCurrentDay=()=>{
+    let weekday=new Array(7);
+    weekday[0]="Sunday";
+    weekday[1]="Monday";
+    weekday[2]="Tuesday";
+    weekday[3]="Wednesday";
+    weekday[4]="Thursday";
+    weekday[5]="Friday";
+    weekday[6]="Saturday";
+    let CurrentTime=new Date();
+    let day=weekday[CurrentTime.getDay()];
+    //let day=document.getElementById('day');
+    //day.innerText=days;
+    return day;
+};
+const getCurrentTime=()=>{
+   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
+   var now=new Date();
+   var hours=now.getHours;
+   var mins=now.getMinutes();
+   var month=months[now.getMonth()];
+   var date=now.getDate();
+
+   var period="am";
+   if(hours>11){
+    period="pm";
+    if(period>12)
+    hours-=12;
+   }
+   if(mins<10){
+    mins="0"+mins;
+   }
+   return `${month} ${date}`;
+};
+day.innerHTML=getCurrentDay();
+today_date.innerHTML=getCurrentTime();
+  
+    </script>
+</body>
+</html>
